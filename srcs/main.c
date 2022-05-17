@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 09:33:09 by noalexan          #+#    #+#             */
-/*   Updated: 2022/05/13 14:56:00 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/05/17 10:17:11 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	main(int argc, char **argv, char **env)
 	exec_all_cmds(env, path, argv + 2, files);
 	close(files[0]);
 	close(files[1]);
-	// system("leaks pipex");
+	system("leaks pipex");
 	return (EXIT_SUCCESS);
 }
