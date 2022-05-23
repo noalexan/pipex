@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
+/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:05:48 by noalexan          #+#    #+#             */
-/*   Updated: 2022/04/26 20:52:43 by noahalexand      ###   ########.fr       */
+/*   Updated: 2022/05/23 10:03:37 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
