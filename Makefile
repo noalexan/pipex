@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
+#    By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/05/12 13:35:59 by noalexan         ###   ########.fr        #
+#    Updated: 2022/05/25 08:38:19 by noahalexand      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,30 +29,30 @@ LIBS	:=	srcs/libft/libft.a \
 RM		:= rm -rf
 AR		:= ar rcs
 
-GREEN	:= "\033[0;32m"
-CYAN	:= "\033[0;36m"
-YELLOW	:= "\033[0;33m"
+GREEN	:= "\033[0m\033[1;32m"
+CYAN	:= "\033[0m\033[1;36m"
+YELLOW	:= "\033[0m\033[1;33m\033[3;33m"
 RESET	:= "\033[0m"
 
 TEST	:= 300
 
 .c.o: $(SRCS)
-	@printf $(GREEN)"\r\033[K[Compiling objects... "$(YELLOW)"<$<>"$(GREEN)" ]"$(RESET)
+	@printf $(GREEN)"\r\033[K[Compiling objects... "$(YELLOW)"<$<>"$(GREEN)" ] ⏳"$(RESET)
 	@$(CC) $(OFLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJS)
-	@printf $(GREEN)"\r\033[KObjects compiled succesfully\n"$(RESET)
+	@printf $(GREEN)"\r\033[KObjects compiled succesfully ✅\n"$(RESET)
 	@make -C srcs/libft
 	@make -C srcs/printf
 	@make -C srcs/get_next_line
-	@printf $(CYAN)"\r\033[K[Compiling '$(NAME)'...]"$(RESET)
+	@printf $(CYAN)"\r\033[K[Compiling '$(NAME)'...] ⏳"$(RESET)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -I include/ -o $(NAME)
-	@printf $(GREEN)"\r\033[KSuccess compiling '$(NAME)'\n"$(RESET)
+	@printf $(GREEN)"\r\033[KSuccess compiling '$(NAME)' ✅\n"$(RESET)
 
 visualizer: all
-	@printf $(GREEN)"\r\033[KLaunching python visualizer..."$(RESET)
+	@printf $(GREEN)"\r\033[KLaunching python visualizer... ⏳"$(RESET)
 	@python3 pyviz.py `ruby -e "puts (1..$(TEST)).to_a.shuffle.join(' ')"`
-	@printf $(GREEN)"\r\033[KPython visualizer launched succesfully\n"$(RESET)
+	@printf $(GREEN)"\r\033[KPython visualizer launched succesfully ✅\n"$(RESET)
 
 all: $(NAME)
 
@@ -95,16 +95,16 @@ load:
 	@sleep .1
 
 clean:
-	@printf $(CYAN)"\r\033[K[Erasing objects...]"$(RESET)
+	@printf $(CYAN)"\r\033[K[Erasing objects...] ⏳"$(RESET)
 	@$(RM) $(OBJS)
 	@make -C srcs/libft fclean
 	@make -C srcs/printf fclean
 	@make -C srcs/get_next_line fclean
 
 fclean: clean
-	@printf $(CYAN)"\r\033[K[Erasing binary file...]"$(RESET)
+	@printf $(CYAN)"\r\033[K[Erasing binary file...] ⏳"$(RESET)
 	@$(RM) $(NAME) test_parser
-	@printf $(GREEN)"\r\033[KForce cleaned\n"$(RESET)
+	@printf $(GREEN)"\r\033[KForce cleaned 🗑\n"$(RESET)
 
 re: fclean all
 

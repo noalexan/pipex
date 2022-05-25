@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 10:36:18 by noalexan          #+#    #+#             */
-/*   Updated: 2022/05/12 09:04:14 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/05/12 19:21:06 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,19 @@ void	err(const char *string, ...)
 {
 	va_list	param;
 	int		i;
-	int		size;
 
 	va_start(param, string);
 	i = 0;
-	size = 0;
 	write(1, "Erreur: ", 9);
 	while (string[i])
 	{
 		if (string[i] == '%')
 		{
 			i++;
-			size += ft_percent(param, string[i]);
+			ft_percent(param, string[i]);
 		}
 		else
-			size += ft_putchar(string[i]);
+			ft_putchar(string[i]);
 		i++;
 	}
 	write(1, "\n", 1);
