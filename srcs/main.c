@@ -6,7 +6,7 @@
 /*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 09:33:09 by noalexan          #+#    #+#             */
-/*   Updated: 2022/05/25 12:27:54 by noahalexand      ###   ########.fr       */
+/*   Updated: 2022/05/25 12:36:03 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ Here_doc:
 	faire une fonction qui a pour but de lire les fichiers.
 
 Trouver ce qu'il me reste a faire...
+
+Juste un test
 
 */
