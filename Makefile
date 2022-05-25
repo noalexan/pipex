@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/05/25 12:29:19 by noalexan         ###   ########.fr        #
+#    Updated: 2022/05/25 12:32:55 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,10 @@ TEST	:= 300
 	@printf $(GREEN)"\r\033[K[Compiling objects... "$(YELLOW)"<$<>"$(GREEN)" ] ⏳"$(RESET)
 	@$(CC) $(OFLAGS) -c $< -o $(<:.c=.o)
 
-usage:
-	@printf "\nNow you can run:\n\t./$(NAME) <file1> <cmd> ... <cmd> <file2>\n\n"
+update:
+	@git pull
 
 $(NAME): $(OBJS)
-	@git pull
 	@printf $(GREEN)"\r\033[KObjects compiled succesfully ✅\n"$(RESET)
 	@make -C srcs/libft
 	@make -C srcs/printf
@@ -52,13 +51,14 @@ $(NAME): $(OBJS)
 	@printf $(CYAN)"\r\033[K[Compiling '$(NAME)'...] ⏳"$(RESET)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -I include/ -o $(NAME)
 	@printf $(GREEN)"\r\033[KSuccess compiling '$(NAME)' ✅\n"$(RESET)
+	@printf "\nNow you can run:\n\t./$(NAME) <file1> <cmd> ... <cmd> <file2>\n\n"
 
 visualizer: $(NAME)
 	@printf $(GREEN)"\r\033[KLaunching python visualizer... ⏳"$(RESET)
 	@python3 pyviz.py `ruby -e "puts (1..$(TEST)).to_a.shuffle.join(' ')"`
 	@printf $(GREEN)"\r\033[KPython visualizer launched succesfully ✅\n"$(RESET)
 
-all: $(NAME) usage
+all: update $(NAME)
 
 load:
 	@printf '\r █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒\r'
