@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 09:33:09 by noalexan          #+#    #+#             */
-/*   Updated: 2022/05/23 09:52:13 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/05/25 12:27:54 by noahalexand      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,13 @@ int	main(int argc, char **argv, char **env)
 	// system("leaks pipex");
 	return (EXIT_SUCCESS);
 }
+
+/*
+
+Here_doc:
+	faire une structure qui contient tout.
+	faire une fonction qui a pour but de lire les fichiers.
+
+Trouver ce qu'il me reste a faire...
+
+*/
