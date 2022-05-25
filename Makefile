@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+         #
+#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/05/25 12:08:37 by noahalexand      ###   ########.fr        #
+#    Updated: 2022/05/25 12:29:19 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,13 +40,11 @@ TEST	:= 300
 	@printf $(GREEN)"\r\033[K[Compiling objects... "$(YELLOW)"<$<>"$(GREEN)" ] ⏳"$(RESET)
 	@$(CC) $(OFLAGS) -c $< -o $(<:.c=.o)
 
-update:
-	@git pull
-
 usage:
 	@printf "\nNow you can run:\n\t./$(NAME) <file1> <cmd> ... <cmd> <file2>\n\n"
 
-$(NAME): update $(OBJS)
+$(NAME): $(OBJS)
+	@git pull
 	@printf $(GREEN)"\r\033[KObjects compiled succesfully ✅\n"$(RESET)
 	@make -C srcs/libft
 	@make -C srcs/printf
