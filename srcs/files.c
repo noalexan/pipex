@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:27:07 by noalexan          #+#    #+#             */
-/*   Updated: 2022/05/23 11:50:12 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/05/30 13:54:54 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	*open_files(char **argv)
 	i = -1;
 	while (argv[++i])
 		;
-	files[1] = open(argv[i - 1], O_WRONLY);
+	files[1] = open(argv[i - 1], O_WRONLY | O_TRUNC | O_CREAT);
 	if (!ft_strcmp(argv[1], argv[i - 1]))
 		err(ERR_SAME_FILE);
 	if (files[0] < 1)
@@ -44,5 +44,6 @@ char	*read_file(int fd)
 		content = ft_strjoin(content, buffer);
 		buffer = get_next_line(fd);
 	}
+	close(fd);
 	return (content);
 }

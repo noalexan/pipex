@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:19:56 by noalexan          #+#    #+#             */
-/*   Updated: 2022/05/23 12:29:40 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/05/31 14:57:42 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,39 +23,43 @@ t_cmd	parse_argv(char **path, char *argv)
 		;
 	cmd.args[i] = NULL;
 	cmd.cmd_path = find_path(path, cmd.args[0]);
-	ft_printf("cmd : { %s, { ", cmd.cmd_path);
-	i = -1;
-	while (cmd.args[++i])
-		ft_printf("%s, ", cmd.args[i]);
-	ft_printf("NULL } }\n", cmd.args[0], cmd.args[1], cmd.args[2]);
 	return (cmd);
+}
+
+char	*exec_cmd(char **env, t_cmd cmd, char *input)
+{
+	int	pid;
+	int	p[2];
+
+	pipe(p);
+	ft_printf(p[1], input);
+	pid = fork();
+	if (pid == 0)
+	{
+		dup2(p[1], 1);
+		dup2(p[0], 0);
+		execve(cmd.cmd_path, cmd.args, env);
+	}
+	close(p[1]);
+	return (read_file(p[0]));
 }
 
 void	exec_all_cmds(char **env, char **path, char **argv, int *files)
 {
-	t_cmd	cmd;
-	int		pid;
+	char	*output;
 	int		i;
-	int		pipe_fd[2];
 
-	pipe(pipe_fd);
-	dup2(pipe_fd[1], 1);
-	dup2(files[0], 1);
-	i = -1;
-	cmd = parse_argv(path, argv[i]);
-	pid = fork();
-	if (pid == -1)
-		err(ERR_FORK);
-	else if (pid > 0)
-		execve(cmd.cmd_path, cmd.args, env);
-	dup2(pipe_fd[0], 0);
-	while (argv[++i + 1])
+	(void) env;
+	(void) path;
+	(void) argv;
+	(void) files;
+
+	i = 0;
+	output = exec_cmd(env, parse_argv(path, argv[i]), read_file(files[0]));
+	while (argv[++i])
 	{
-		cmd = parse_argv(path, argv[i]);
-		pid = fork();
-		if (pid == -1)
-			err(ERR_FORK);
-		else if (pid > 0)
-			execve(cmd.cmd_path, cmd.args, env);
+		output = exec_cmd(env, parse_argv(path, argv[i]), output);
+		free(output);
 	}
+	ft_printf(1, output);
 }

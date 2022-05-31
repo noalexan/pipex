@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: noahalexandre <noahalexandre@student.42    +#+  +:+       +#+         #
+#    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/05/25 08:38:11 by noahalexand      ###   ########.fr        #
+#    Updated: 2022/05/31 14:47:50 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,22 +63,22 @@ RM		:= rm -rf
 AR		:= ar rcs
 
 .c.o:
-	@printf $(GREEN)"\r\033[K[Compiling libft... "$(YELLOW)"<$<>"$(GREEN)" ] ⏳"$(RESET)
+	@printf $(GREEN)"\r\033[KCompiling libft... "$(YELLOW)"<$<> "$(RESET)"⏳"
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I.
 
 $(NAME): $(OBJS)
-	@printf $(CYAN)"\r\033[K[Compiling '$(NAME)'...] ⏳"$(RESET)
+	@printf $(CYAN)"\r\033[KCompiling '$(NAME)'... "$(RESET)"⏳"
 	@$(AR) $(NAME) $(OBJS)
 	@printf $(GREEN)"\r\033[KLibft compiled succesfully ✅\n"$(RESET)
 
 all: $(NAME)
 
 clean:
-	@printf $(CYAN)"\r\033[K[Erasing libft...] ⏳"$(RESET)
+	@printf $(CYAN)"\r\033[KErasing libft... "$(RESET)"⏳"
 	@$(RM) $(OBJS)
 
 fclean: clean
-	@printf $(CYAN)"\r\033[K[Erasing $(NAME)...] ⏳"$(RESET)
+	@printf $(CYAN)"\r\033[KErasing $(NAME)... "$(RESET)"⏳"
 	@$(RM) $(NAME)
 
 re: fclean all
