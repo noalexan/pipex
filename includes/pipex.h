@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 
 # include "structs.h"
 # include "get_next_line.h"

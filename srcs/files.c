@@ -12,12 +12,12 @@
 
 #include "../includes/pipex.h"
 
-int	*open_files(char **argv)
+int *open_files(char **argv)
 {
-	int	*files;
-	int	i;
+	int *files;
+	int i;
 
-	files = (int *) ft_calloc(2, sizeof(int));
+	files = (int *)ft_calloc(2, sizeof(int));
 	files[0] = open(argv[1], O_RDONLY);
 	i = -1;
 	while (argv[++i])
@@ -32,10 +32,10 @@ int	*open_files(char **argv)
 	return (files);
 }
 
-char	*read_file(int fd)
+char *read_file(int fd)
 {
-	char	*content;
-	char	*buffer;
+	char *content;
+	char *buffer;
 
 	content = get_next_line(fd);
 	buffer = get_next_line(fd);

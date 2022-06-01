@@ -24,7 +24,7 @@ int	main(int argc, char **argv, char **env)
 	exec_all_cmds(env, path, argv + 2, files);
 	close(files[0]);
 	close(files[1]);
-	// system("leaks pipex");
+	system("leaks pipex");
 	return (EXIT_SUCCESS);
 }
 
@@ -35,7 +35,5 @@ Here_doc:
 	faire une fonction qui a pour but de lire les fichiers.
 
 Trouver ce qu'il me reste a faire...
-
-Juste un test
 
 */
