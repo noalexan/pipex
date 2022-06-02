@@ -48,7 +48,14 @@ char *exec_cmd(char **env, t_cmd cmd, char *input)
 		execve(cmd.cmd_path, cmd.args, env);
 	}
 	close(p[1]);
-	ft_printf(std, "{\n  cmd: \"%s\",\n  args: [\n    \"%s\",\n    \"%s\",\n    \"%s\"\n  ]\n}\n", cmd.cmd_path, cmd.args[0], cmd.args[1], cmd.args[2]);
+	// ft_printf(
+	// 	std,
+	// 	"{\n  cmd: \"%s\",\n  args: [\n    \"%s\",\n    \"%s\",\n    \"%s\"\n  ]\n}\n",
+	// 	cmd.cmd_path,
+	// 	cmd.args[0],
+	// 	cmd.args[1],
+	// 	cmd.args[2]
+	// );
 	return (read_file(p[0]));
 }
 

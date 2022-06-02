@@ -12,6 +12,16 @@
 
 #include "../includes/pipex.h"
 
+/*
+
+Here_doc:
+	faire une structure qui contient tout.
+	faire une fonction qui a pour but de lire les fichiers.
+
+Trouver ce qu'il me reste a faire...
+
+*/
+
 int	main(int argc, char **argv, char **env)
 {
 	char	**path;
@@ -27,13 +37,3 @@ int	main(int argc, char **argv, char **env)
 	system("leaks pipex");
 	return (EXIT_SUCCESS);
 }
-
-/*
-
-Here_doc:
-	faire une structure qui contient tout.
-	faire une fonction qui a pour but de lire les fichiers.
-
-Trouver ce qu'il me reste a faire...
-
-*/
