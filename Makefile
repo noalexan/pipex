@@ -6,7 +6,7 @@
 #    By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 13:22:13 by noalexan          #+#    #+#              #
-#    Updated: 2022/06/08 14:57:22 by noalexan         ###   ########.fr        #
+#    Updated: 2022/06/09 10:06:25 by noalexan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ OFLAGS	:= -Werror -Wextra -Wall
 NAME	:= pipex
 
 SRCS	:=	srcs/main.c \
+			srcs/another_file.c \
 
 OBJS	:= $(SRCS:.c=.o)
 

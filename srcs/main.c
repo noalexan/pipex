@@ -6,54 +6,11 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 10:22:43 by noalexan          #+#    #+#             */
-/*   Updated: 2022/06/08 16:19:49 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/06/09 10:04:37 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-
-char	*get_env(char **env, char *find)
-{
-	int	i;
-
-	i = -1;
-	while (env[++i])
-		if (!ft_strncmp(env[i], find, ft_strlen(find)))
-			return (env[i] + ft_strlen(find) + 1);
-	return (NULL);
-}
-
-char	**set_slash(char **path)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (path[++i])
-	{
-		j = -1;
-		while (path[i][++j])
-			;
-		if (path[i][j - 1] != '/')
-			path[i][j] = '/';
-	}
-	return (path);
-}
-
-int	open_files(char *filename, int inputfile)
-{
-	int	file;
-
-	if (inputfile)
-	{
-		file = open(filename, O_RDONLY);
-		if (file < 0)
-			ft_printf(2, ERR_FILE, filename);
-	}
-	else
-		file = open(filename, O_WRONLY | O_TRUNC | O_CREAT);
-	return (file);
-}
 
 char	*find_path(char **path, char *cmd)
 {
@@ -79,29 +36,39 @@ t_cmd	parse_argv(char **path, char *argv)
 
 	cmd.args = ft_split(argv, ' ');
 	i = -1;
-	// while (cmd.args[++i])
-	// 	;
-	// cmd.args[i] = NULL;
 	cmd.cmd_path = find_path(path, cmd.args[0]);
 	return (cmd);
 }
 
-void	exec_cmd(char **path, char **env, char **argv, int *files)
+void	exec_cmd(t_cmd cmd, char **env, int *files)
 {
-	t_cmd	cmd;
+	int	pid;
+	int	i;
 
-	(void) files;
-	cmd = parse_argv(path, argv[2]);
-	(void) env;
-	execve(cmd.cmd_path, cmd.args, env);
+	pid = fork();
+	if (!pid)
+	{
+		dup2(files[0], STDIN);
+		dup2(files[1], STDOUT);
+		execve(cmd.cmd_path, cmd.args, env);
+	}
+	wait(NULL);
 	free(cmd.cmd_path);
-	free(*cmd.args);
+	i = -1;
+	while (cmd.args[++i])
+		free(cmd.args[i]);
 	free(cmd.args);
 }
 
 void	exec_cmds(char **path, char **env, char **argv, int *files)
 {
-	
+	int	pipe_fd[2];
+
+	pipe(pipe_fd);
+	exec_cmd(parse_argv(path, argv[2]), env, (int []){files[0], pipe_fd[1]});
+	close(pipe_fd[1]);
+	exec_cmd(parse_argv(path, argv[3]), env, (int []){pipe_fd[0], files[1]});
+	close(pipe_fd[0]);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -123,6 +90,5 @@ int	main(int argc, char **argv, char **env)
 	exec_cmds(path, env, argv, files);
 	close(files[0]);
 	close(files[1]);
-	system("leaks pipex");
 	return (0);
 }
