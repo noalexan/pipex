@@ -1,8 +1,4 @@
-.vscode
-.DS_Store
-.gitignore
-pipex
-*test*
-*.icloud
 *.o
 *.a
+pipex
+.DS_Store
